@@ -15,7 +15,7 @@ import com.jraska.falcon.FalconSpoonRule
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class LoginTest {
+class LoginTest2 {
 
     @Rule @JvmField
     val grantPermissionRule: GrantPermissionRule = GrantPermissionRule.grant(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -26,29 +26,9 @@ class LoginTest {
     @get:Rule
     val falconSpoonRule = FalconSpoonRule()
 
-
-    @Test
-    fun loginMissingEmailPassword() {
-        login {
-            clickLogin()
-            screenShot(falconSpoonRule, "loginMissingEmailPassword")
-            matchErrorText(string(R.string.missing_fields))
-        }
-    }
-
-    @Test
-    fun loginMissingPassword() {
-        login {
-            setEmail("mail@example.com")
-            clickLogin()
-            screenShot(falconSpoonRule, "loginMissingPassword")
-            matchErrorText(string(R.string.missing_fields))
-        }
-    }
-
     @Test
     @SmokeTest
-    fun loginWrongPassword() {
+    fun loginWrongPassword2() {
         login {
             setEmail("mail@example.com")
             setPassword("wrong")
@@ -61,32 +41,13 @@ class LoginTest {
 
     @Test
     @RegressionTest
-    fun loginSuccess() {
+    fun loginSuccess2() {
         login {
             setEmail("mail@example.com")
             setPassword("pass")
             clickLogin()
             screenShot(falconSpoonRule, "loginSuccess")
             matchText(R.id.tvName, string(R.string.name_surname))
-        }
-    }
-
-    @Test
-    fun loginProfileAndSettings() {
-        login {
-            setEmail("mail@example.com")
-            setPassword("pass")
-            screenShot(falconSpoonRule, "login")
-            clickLogin()
-            screenShot(falconSpoonRule,"profile")
-        }
-        profile {
-            clickSettings()
-            screenShot(falconSpoonRule,"settings")
-            toggleNotifications()
-            screenShot(falconSpoonRule,"toggle1")
-            toggleNightMode()
-            screenShot(falconSpoonRule,"toggle2")
         }
     }
 

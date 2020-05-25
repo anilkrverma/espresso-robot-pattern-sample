@@ -45,6 +45,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments "annotation": "com.example.espressorobot.annotations.SmokeTest"
     }
 
     buildTypes {
